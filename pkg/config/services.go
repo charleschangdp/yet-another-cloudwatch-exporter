@@ -727,6 +727,13 @@ var SupportedServices = serviceConfigs{
 		},
 	},
 	{
+		Namespace: "AWS/SageMaker",
+		Alias:     "sagemaker",
+		ResourceFilters: []*string{
+			aws.String("sagemaker"),
+		},
+	},
+	{
 		Namespace: "/aws/sagemaker/Endpoints",
 		Alias:     "sagemaker-endpoints",
 		ResourceFilters: []*string{
@@ -735,7 +742,7 @@ var SupportedServices = serviceConfigs{
 	},
 	{
 		Namespace: "/aws/sagemaker/TrainingJobs",
-		Alias:     "sagemaker-train",
+		Alias:     "sagemaker-training",
 		ResourceFilters: []*string{
 			aws.String("sagemaker"),
 		},
@@ -748,8 +755,22 @@ var SupportedServices = serviceConfigs{
 		},
 	},
 	{
-		Namespace: "AWS/SageMaker",
-		Alias:     "sagemaker",
+		Namespace: "/aws/sagemaker/TransformJobs",
+		Alias:     "sagemaker-transform",
+		ResourceFilters: []*string{
+			aws.String("sagemaker"),
+		},
+	},
+	{
+		Namespace: "/aws/sagemaker/InferenceRecommendationsJobs",
+		Alias:     "sagemaker-inf-rec",
+		ResourceFilters: []*string{
+			aws.String("sagemaker"),
+		},
+	},
+	{
+		Namespace: "AWS/Sagemaker/ModelBuildingPipeline",
+		Alias:     "sagemaker-model-building",
 		ResourceFilters: []*string{
 			aws.String("sagemaker"),
 		},

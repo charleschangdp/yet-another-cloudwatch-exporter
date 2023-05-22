@@ -15,7 +15,7 @@ discovery:
       metrics:
         - name: CPUUtilization    
         - name: MemoryUtilization  
-    - type: sagemaker-train
+    - type: sagemaker-training
       regions:
         - us-west-2
       length: 120
