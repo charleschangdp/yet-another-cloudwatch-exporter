@@ -726,4 +726,32 @@ var SupportedServices = serviceConfigs{
 			regexp.MustCompile(":collection/(?P<CollectionId>[^/]+)"),
 		},
 	},
+	{
+		Namespace: "/aws/sagemaker/Endpoints",
+		Alias:     "sagemaker-endpoints",
+		ResourceFilters: []*string{
+			aws.String("sagemaker"),
+		},
+	},
+	{
+		Namespace: "/aws/sagemaker/TrainingJobs",
+		Alias:     "sagemaker-train",
+		ResourceFilters: []*string{
+			aws.String("sagemaker"),
+		},
+	},
+	{
+		Namespace: "/aws/sagemaker/ProcessingJobs",
+		Alias:     "sagemaker-processing",
+		ResourceFilters: []*string{
+			aws.String("sagemaker"),
+		},
+	},
+	{
+		Namespace: "AWS/SageMaker",
+		Alias:     "sagemaker",
+		ResourceFilters: []*string{
+			aws.String("sagemaker"),
+		},
+	},
 }
