@@ -726,7 +726,6 @@ var SupportedServices = serviceConfigs{
 			regexp.MustCompile(":collection/(?P<CollectionId>[^/]+)"),
 		},
 	},
-<<<<<<< HEAD
 	{
 		Namespace: "AWS/SageMaker",
 		Alias:     "sagemaker",
@@ -776,6 +775,4 @@ var SupportedServices = serviceConfigs{
 			aws.String("sagemaker"),
 		},
 	},
-=======
->>>>>>> parent of e820ff2 (sagemaker initial)
 }
