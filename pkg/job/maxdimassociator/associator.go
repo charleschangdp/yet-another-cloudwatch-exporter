@@ -151,6 +151,13 @@ func buildLabelsMap(cwMetric *model.Metric, regexpMapping *dimensionsRegexpMappi
 				}
 			}
 
+			if cwMetric.Namespace == "/aws/sagemaker/TrainingJobs" && name == "Host" {
+				hostSuffix := regexp.MustCompile("/algo-[0-9]+$")
+				if hostSuffix.MatchString(value) {
+					value = hostSuffix.ReplaceAllString(value, "")
+				}
+			}
+
 			if rDimension == mDimension.Name {
 				labels[name] = value
 			}
