@@ -752,6 +752,9 @@ var SupportedServices = serviceConfigs{
 		ResourceFilters: []*string{
 			aws.String("sagemaker:training-job"),
 		},
+		DimensionRegexps: []*regexp.Regexp{
+			regexp.MustCompile(":training-job/(?P<Host>[^/]+)$"),
+		},
 	},
 	{
 		Namespace: "/aws/sagemaker/ProcessingJobs",

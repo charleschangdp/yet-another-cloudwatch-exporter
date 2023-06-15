@@ -15,8 +15,14 @@ var sagemakerTrainingJobOne = &model.TaggedResource{
 	Namespace: "/aws/sagemaker/TrainingJobs",
 }
 
+var sagemakerTrainingJobTwo = &model.TaggedResource{
+	ARN:       "arn:aws:sagemaker:us-west-2:123456789012:training-job/example-training-job-two",
+	Namespace: "/aws/sagemaker/TrainingJobs",
+}
+
 var sagemakerTrainingJobResources = []*model.TaggedResource{
 	sagemakerTrainingJobOne,
+	sagemakerTrainingJobTwo,
 }
 
 func TestAssociatorSagemakerTrainingJob(t *testing.T) {
@@ -35,7 +41,7 @@ func TestAssociatorSagemakerTrainingJob(t *testing.T) {
 
 	testcases := []testCase{
 		{
-			name: "1 dimension should not match but not skip",
+			name: "1 dimension should match",
 			args: args{
 				dimensionRegexps: config.SupportedServices.GetService("/aws/sagemaker/TrainingJobs").DimensionRegexps,
 				resources:        sagemakerTrainingJobResources,
@@ -49,6 +55,22 @@ func TestAssociatorSagemakerTrainingJob(t *testing.T) {
 			},
 			expectedSkip:     false,
 			expectedResource: sagemakerTrainingJobOne,
+		},
+		{
+			name: "1 dimension should not match",
+			args: args{
+				dimensionRegexps: config.SupportedServices.GetService("/aws/sagemaker/TrainingJobs").DimensionRegexps,
+				resources:        sagemakerTrainingJobResources,
+				metric: &model.Metric{
+					MetricName: "CPUUtilization",
+					Namespace:  "/aws/sagemaker/TrainingJobs",
+					Dimensions: []*model.Dimension{
+						{Name: "Host", Value: "example-training-job-three/algo-2"},
+					},
+				},
+			},
+			expectedSkip:     true,
+			expectedResource: nil,
 		},
 	}
 

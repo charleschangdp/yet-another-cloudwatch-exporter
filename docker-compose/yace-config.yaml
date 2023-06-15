@@ -1,27 +1,29 @@
 apiVersion: v1alpha1
-sts-region: us-east-1
+sts-region: us-west-2
 discovery:
   jobs:
-    - type: AWS/ECS
-      regions: [us-east-1]
-      period: 300
-      length: 300
+    - type: sagemaker-endpoints
+      regions:
+        - us-west-2
+      length: 120
+      period: 60
+      statistics:
+        - Average
+        - Sum
+        - Minimum
+        - Maximum
       metrics:
-        - name: CPUReservation
-          statistics:
-            - Average
-        - name: MemoryReservation
-          statistics:
-            - Average
-        - name: CPUUtilization
-          statistics:
-            - Average
+        - name: CPUUtilization    
+        - name: MemoryUtilization  
+    - type: sagemaker-training
+      regions:
+        - us-west-2
+      length: 120
+      period: 60
+      statistics:
+        - Average
+        - Sum
+        - Minimum
+        - Maximum
+      metrics:
         - name: MemoryUtilization
-          statistics:
-            - Average
-    - type: AWS/EC2
-      regions: [us-east-1]
-      metrics:
-        - name: CPUUtilization
-          statistics:
-            - Average
