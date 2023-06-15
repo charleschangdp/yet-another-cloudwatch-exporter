@@ -81,7 +81,7 @@ func NewAssociator(dimensionRegexps []*regexp.Regexp, resources []*model.TaggedR
 	slices.SortFunc(assoc.mappings, func(a, b *dimensionsRegexpMapping) bool {
 		return len(a.dimensions) >= len(b.dimensions)
 	})
-
+	fmt.Println("hi")
 	return assoc
 }
 
