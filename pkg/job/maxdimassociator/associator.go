@@ -81,7 +81,6 @@ func NewAssociator(dimensionRegexps []*regexp.Regexp, resources []*model.TaggedR
 	slices.SortFunc(assoc.mappings, func(a, b *dimensionsRegexpMapping) bool {
 		return len(a.dimensions) >= len(b.dimensions)
 	})
-	fmt.Println("hi")
 	return assoc
 }
 
@@ -123,7 +122,6 @@ func (assoc Associator) AssociateMetricToResource(cwMetric *model.Metric) (*mode
 	// the dimensions of the mapping to build a labels signature.
 	labels := buildLabelsMap(cwMetric, regexpMapping)
 	signature := prom_model.LabelsToSignature(labels)
-	fmt.Println(labels)
 	if resource, ok := regexpMapping.dimensionsMapping[signature]; ok {
 		return resource, false
 	}
