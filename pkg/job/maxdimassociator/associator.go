@@ -1,7 +1,6 @@
 package maxdimassociator
 
 import (
-	"fmt"
 	"strings"
 
 	"github.com/grafana/regexp"
